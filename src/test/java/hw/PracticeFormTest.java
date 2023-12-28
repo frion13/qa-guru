@@ -2,16 +2,11 @@ package hw;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
-
 import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 public class PracticeFormTest {
@@ -20,13 +15,16 @@ public class PracticeFormTest {
         open("https://demoqa.com/automation-practice-form");
         Configuration.holdBrowserOpen = false;
         Configuration.browserSize = "1920x1080";
+        Configuration.pageLoadStrategy = "eager";
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
     }
-    @AfterAll
-    static void afterAll(){
-    }
+
 
     @Test
     void practiceFormTest(){
+        SelenideElement month = $(".react-datepicker__month-select");
+        SelenideElement year = $(".react-datepicker__year-select");
 
         $("#firstName").setValue("Иван");
         $("#lastName").setValue("Иванов");
@@ -34,10 +32,8 @@ public class PracticeFormTest {
         $(".custom-control-label"). shouldHave(text("Male")).click();
         $("#userNumber").setValue("1234567890");
         $("#dateOfBirthInput").click();
-        SelenideElement month = $(".react-datepicker__month-select");
         month.click();
         month.selectOption("April");
-        SelenideElement year = $(".react-datepicker__year-select");
         year.click();
         year.selectOption("1990");
         $$(".react-datepicker__day").find(text("16")).click();
@@ -45,12 +41,11 @@ public class PracticeFormTest {
         $$(".custom-control-label").findBy(text("Sports")).click();
         $$(".custom-control-label").findBy(text("Reading")).click();
         $$(".custom-control-label").findBy(text("Music")).click();
-        $("#uploadPicture").uploadFile(new File("src/test/resources/img.jpeg"));
+        $("#uploadPicture").uploadFromClasspath("img.jpeg");
         $("#currentAddress").setValue("Москва, ул Тверская 56");
         $("#react-select-3-input").setValue("ncr").pressEnter();
         $("#react-select-4-input").setValue("Gurgaon").pressEnter();
         $("#userForm").submit();
-
         $(".modal-header").shouldHave(text("Thanks for submitting the form"));
         $$("tbody tr").shouldHave(
                 texts(
