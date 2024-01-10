@@ -11,11 +11,11 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class HoverAndClick {
     @Test
-    void HoverAndClickTest(){
+    void hoverAndClickTest() {
         open("https://github.com/");
         $("nav").$(byText("Solutions")).hover();
         $(byTagAndText("a", "Enterprise")).click();
         $("#hero-section-brand-heading").shouldHave(text("""
-The AI-powered developer platform.""")).shouldBe(visible);
+                The AI-powered developer platform.""")).shouldBe(visible);
     }
 }
