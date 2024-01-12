@@ -1,6 +1,6 @@
 package hw;
 
-import com.codeborne.selenide.Configuration;
+
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -13,9 +13,6 @@ public class PracticeFormTest {
     @BeforeAll
     static void setup(){
         open("https://demoqa.com/automation-practice-form");
-        Configuration.holdBrowserOpen = false;
-        Configuration.browserSize = "1920x1080";
-        Configuration.pageLoadStrategy = "eager";
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
     }
