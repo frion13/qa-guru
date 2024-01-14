@@ -1,11 +1,42 @@
 package hw;
 
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
+import static utils.RandomUtils.*;
+
 public class PracticeFormPageObjectTest extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
+    Faker faker = new Faker();
+    String firstName = faker.name().firstName(),
+            lastName = faker.name().lastName(),
+            userEmail = faker.internet().emailAddress(),
+            gender = getRandomGender(),
+            phoneNumper = faker.phoneNumber().subscriberNumber(10),
+            month = getRandomMonth(),
+            year = getRandomYear(),
+            subject = getRandomSubject(),
+            hobbies = getRandomHobbies(),
+            picture = "img.jpeg",
+            currentAddress = faker.address().fullAddress(),
+            state = "NCR",
+            city = "Delhi",
+            checkName = "Student Name",
+            name = String.format("%s %s", firstName, lastName),
+            checkEmail = "Student Email",
+            checkGender = "Gender",
+            checkMobile = "Mobile",
+            checkDateOfBirth = "Date of Birth",
+            birthDay = String.format("%s %s,%s", "15", month, year),
+            checkSubjects = "Subjects",
+            checkHobbies = "Hobbies",
+            checkPicture = "Picture",
+            checkAdress = "Address",
+            checkStateAndCity = "NCR Delhi",
+            stateAndCity = String.format("%s %s", state, city);
+
 
     @BeforeEach
     void openPage() {
@@ -15,60 +46,49 @@ public class PracticeFormPageObjectTest extends TestBase {
 
     @Test
     void practiceFormTest() {
-        registrationPage.setFirstName("Иван")
-                .setLastName("Иванов")
-                .setUserEmail("ivan@ivanov.ru")
-                .setGender("Male")
-                .setUserNumber("1234567890")
-                .setDateOfBirth("30", "April", "1990")
-                .setSubject("math")
-                .setHobbies("Sports", "Reading", "Music")
-                .uploadPicture("img.jpeg")
-                .setCurrentAdrress("Москва, ул Тверская 56")
-                .setStateAndCity("NCR", "Delhi")
+        registrationPage.setFirstName(firstName)
+                .setLastName(lastName)
+                .setUserEmail(userEmail)
+                .setGender(gender)
+                .setUserNumber(phoneNumper)
+                .setDateOfBirth(month, year)
+                .setSubject(subject)
+                .setHobbies(hobbies)
+                .uploadPicture(picture)
+                .setCurrentAdrress(currentAddress)
+                .setStateAndCity(state, city)
                 .submit()
-                .checkResult("""
-                        Student Name	Иван Иванов
-                        Student Email	ivan@ivanov.ru
-                        Gender	Male
-                        Mobile	1234567890
-                        Date of Birth	30 April,1990
-                        Subjects	Maths
-                        Hobbies	Sports, Reading, Music
-                        Picture	img.jpeg
-                        Address	Москва, ул Тверская 56
-                        State and City	NCR Delhi
-                        """);
+                .checkResult(checkName, name)
+                .checkResult(checkEmail, userEmail)
+                .checkResult(checkGender, gender)
+                .checkResult(checkMobile, phoneNumper)
+                .checkResult(checkDateOfBirth, birthDay)
+                .checkResult(checkSubjects, subject)
+                .checkResult(checkHobbies, hobbies)
+                .checkResult(checkPicture, picture)
+                .checkResult(checkAdress, currentAddress)
+                .checkResult(checkStateAndCity, stateAndCity);
 
     }
 
     @Test
     void formWithMinData() {
-        registrationPage.setFirstName("Иван")
-                .setLastName("Иванов")
-                .setUserEmail("ivan@ivanov.ru")
-                .setGender("Male")
-                .setUserNumber("1234567890")
+        registrationPage.setFirstName(firstName)
+                .setLastName(lastName)
+                .setUserEmail(userEmail)
+                .setGender(gender)
+                .setUserNumber(phoneNumper)
                 .submit()
-                .checkResult("""
-                        Student Name	Иван Иванов
-                        Student Email	ivan@ivanov.ru
-                        Gender	Male
-                        Mobile	1234567890
-                        Date of Birth	12 January,2024
-                        Subjects	
-                        Hobbies	
-                        Picture	
-                        Address	
-                        State and City	
-                        """);
-
+                .checkResult(checkName, name)
+                .checkResult(checkEmail, userEmail)
+                .checkResult(checkGender, gender)
+                .checkResult(checkMobile, phoneNumper);
     }
 
     @Test
     void negativeTest() {
-        registrationPage.setGender("Male")
-                .setUserNumber("1234567890")
+        registrationPage.setGender(gender)
+                .setUserNumber(phoneNumper)
                 .submit()
                 .checkBorderColor();
 

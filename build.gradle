@@ -13,8 +13,9 @@ compileTestJava{
 
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1'
-    testImplementation 'com.codeborne:selenide:7.0.4'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1',
+            'com.codeborne:selenide:7.0.4',
+            'com.github.javafaker:javafaker:1.0.2'
 }
 
 test{

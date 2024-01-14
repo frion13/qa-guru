@@ -20,7 +20,7 @@ public class RegistrationPage {
             calendarInput = $("#dateOfBirthInput"),
             subjectsInput = $("#subjectsInput"),
             hobbiesInput = $("#hobbiesWrapper"),
-            upploadPictureInput = $("#uploadPicture"),
+            uploadPictureInput = $("#uploadPicture"),
             currentAddress = $("#currentAddress");
 
 
@@ -61,9 +61,9 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setDateOfBirth(String day, String month, String year) {
+    public RegistrationPage setDateOfBirth(String month, String year) {
         calendarInput.click();
-        calendarComponent.setDate(day, month, year);
+        calendarComponent.setDate(month, year);
 
         return this;
     }
@@ -75,16 +75,15 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setHobbies(String value1, String value2, String value3) {
-        hobbiesInput.$(byText(value1)).click();
-        hobbiesInput.$(byText(value2)).click();
-        hobbiesInput.$(byText(value3)).click();
+    public RegistrationPage setHobbies(String value) {
+        hobbiesInput.$(byText(value)).click();
+
 
         return this;
     }
 
     public RegistrationPage uploadPicture(String value) {
-        upploadPictureInput.uploadFromClasspath(value);
+        uploadPictureInput.uploadFromClasspath(value);
 
         return this;
     }
@@ -111,9 +110,9 @@ public class RegistrationPage {
     }
 
 
-    public RegistrationPage checkResult(String value) {
-        $$(".modal-header").shouldHave(texts("Thanks for submitting the form"));
-        $$("tbody").shouldHave(texts(value));
+    public RegistrationPage checkResult(String key, String value) {
+        $(".table-responsive").$(byText(key)).parent()
+                .shouldHave(text(value));
         return this;
     }
 

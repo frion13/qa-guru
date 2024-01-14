@@ -1,12 +1,13 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class BoxPage {
-    private SelenideElement userNameInput = $("#userName"),
+    private final SelenideElement userNameInput = $("#userName"),
             userEmailInput = $("#userEmail"),
             currentAddressInput = $("#currentAddress"),
             permanentAddressInput = $("#permanentAddress"),
@@ -41,7 +42,7 @@ public class BoxPage {
         return this;
     }
 
-    public BoxPage setPermanentAdress(String value) {
+    public BoxPage setPermanentAddress(String value) {
         permanentAddressInput.setValue(value);
         return this;
     }
@@ -51,7 +52,7 @@ public class BoxPage {
         return this;
     }
 
-    public BoxPage checkResult(String name, String email,String currentAdress, String permanentAdress) {
+    public BoxPage checkResult(String name, String email, String currentAdress, String permanentAdress) {
         nameOutput.shouldHave(text(name));
         emailOutput.shouldHave(text(email));
         currentAddressOutput.shouldHave(text(currentAdress));
