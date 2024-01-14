@@ -1,11 +1,19 @@
 package utils;
 
+import com.github.javafaker.Faker;
+
 import java.security.SecureRandom;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class RandomUtils {
+    private static final Random random = new Random();
+    Faker faker = new Faker();
+    public static String randomState = getRandomState();
+
     public static String getRandomString(int len) {
         String alphanumericCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv";
         SecureRandom rnd = new SecureRandom();
@@ -27,15 +35,14 @@ public class RandomUtils {
     }
 
 
-    public static String getRandomPhone() {
-        return String.format("+%s (%s) %s - %s - %s", getRandomInt(1, 9), getRandomInt(111, 999),
-                getRandomInt(111, 999), getRandomInt(11, 99), getRandomInt(11, 99));
-    }
+//    public static String getRandomPhone() {
+//        return String.format("+%s (%s) %s - %s - %s", getRandomInt(1, 9), getRandomInt(111, 999),
+//                getRandomInt(111, 999), getRandomInt(11, 99), getRandomInt(11, 99));
+//    }
 
     public static String getRandomGender() {
         String[] genders = {"Male", "Female", "Other"};
-        int index = getRandomInt(0, genders.length - 1);
-        return genders[index];
+        return new Faker().options().option(genders);
     }
 
 
@@ -43,9 +50,7 @@ public class RandomUtils {
         String[] monthNames = {"January", "February", "March",
                 "April", "May", "June", "July", "August", "September",
                 "October", "November", "December"};
-
-        int randomIndex = getRandomInt(0, monthNames.length - 1);
-        return monthNames[randomIndex];
+        return new Faker().options().option(monthNames);
 
     }
 
@@ -62,18 +67,35 @@ public class RandomUtils {
     public static String getRandomSubject() {
         String[] subjects = {"Maths", "Arts", "English",
                 "Biology", "Hindi", "Commerce"};
-
-        int index = getRandomInt(0, subjects.length - 1);
-        return subjects[index];
+        return new Faker().options().option(subjects);
 
     }
 
     public static String getRandomHobbies() {
         String[] hobbies = {"Sports", "Reading", "Music"};
-
-        int index = getRandomInt(0, hobbies.length - 1);
-        return hobbies[index];
+        return new Faker().options().option(hobbies);
     }
+
+
+    private static final Map<String, String[]> citiesByState = new HashMap<>();
+
+    static {
+        citiesByState.put("NCR", new String[]{"Delhi", "Gurgaon", "Noida"});
+        citiesByState.put("Uttar Pradesh", new String[]{"Agra", "Lucknow", "Merrut"});
+        citiesByState.put("Haryana", new String[]{"Karnal", "Panipat"});
+        citiesByState.put("Rajasthan", new String[]{"Jaipur", "Jaiselmer"});
+    }
+
+    private static String getRandomState() {
+        String[] states = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
+        return new Faker().options().option(states);
+    }
+
+    public static String getRandomCity() {
+        String[] cities = citiesByState.get(randomState);
+        return new Faker().options().option(cities);
+    }
+
 
 }
 
