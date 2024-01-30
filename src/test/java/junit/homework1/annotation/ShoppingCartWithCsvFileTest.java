@@ -1,18 +1,17 @@
-package junit_homework1_annotation;
+package junit.homework1.annotation;
 
-import junit_homework1_annotation.data.Products;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-@DisplayName("Параметризованный тест c Enum Классом")
-public class ShoppingCartWithEnumTest {
+@DisplayName("Параметризованный тест c CSV файлом")
+public class ShoppingCartWithCsvFileTest {
 
 
     @BeforeEach
@@ -29,14 +28,12 @@ public class ShoppingCartWithEnumTest {
 
 
     @ParameterizedTest
-    @EnumSource(Products.class)
-    void cartShouldHaveExpectedInfo(Products products) {
-        $(byText(products.title)).click();
+    @CsvFileSource(resources = "/test_data/cartShouldHaveExpectedInfo.csv", delimiter = '|')
+    void cartShouldHaveExpectedInfo(String title, String price, String description) {
+        $(byText(title)).click();
         $(".btn_inventory").click();
         $(".shopping_cart_link").click();
-        $(".cart_list").shouldHave(text(products.title))
-                .shouldHave(text(products.price))
-                .shouldHave(text(products.description));
+        $(".cart_list").shouldHave(text(title)).shouldHave(text(price)).shouldHave(text(description));
 
     }
 }

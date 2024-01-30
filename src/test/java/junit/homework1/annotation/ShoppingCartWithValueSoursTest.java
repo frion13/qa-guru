@@ -1,4 +1,4 @@
-package junit_homework1_annotation;
+package junit.homework1.annotation;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;

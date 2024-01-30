@@ -1,4 +1,4 @@
-package junit_lesson1_annotation.data;
+package junit.lesson1.annotation.data;
 
 public enum Languege {
     RU("ЧТО ТАКОЕ SELENIDE?"),

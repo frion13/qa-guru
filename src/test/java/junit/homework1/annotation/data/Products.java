@@ -1,4 +1,4 @@
-package junit_homework1_annotation.data;
+package junit.homework1.annotation.data;
 
 public enum Products {
     BACKPACK("Sauce Labs Backpack", "$29.99",

@@ -1,7 +1,7 @@
-package junit_lesson1_annotation;
+package junit.lesson1.annotation;
 
 
-import junit_lesson1_annotation.data.Languege;
+import junit.lesson1.annotation.data.Languege;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;

@@ -1,4 +1,4 @@
-package junit_lesson1_annotation;
+package junit.lesson1.annotation;
 
 
 import com.codeborne.selenide.CollectionCondition;
