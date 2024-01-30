@@ -10,8 +10,7 @@ import java.util.Map;
 
 
 public class RandomUtils {
-    private static final Random random = new Random();
-    Faker faker = new Faker();
+
     public static String randomState = getRandomState();
 
     public static String getRandomString(int len) {
@@ -77,13 +76,13 @@ public class RandomUtils {
     }
 
 
-    private static final Map<String, String[]> citiesByState = new HashMap<>();
+    private static final Map<String, String[]> CITIESBYSTATE = new HashMap<>();
 
     static {
-        citiesByState.put("NCR", new String[]{"Delhi", "Gurgaon", "Noida"});
-        citiesByState.put("Uttar Pradesh", new String[]{"Agra", "Lucknow", "Merrut"});
-        citiesByState.put("Haryana", new String[]{"Karnal", "Panipat"});
-        citiesByState.put("Rajasthan", new String[]{"Jaipur", "Jaiselmer"});
+        CITIESBYSTATE.put("NCR", new String[]{"Delhi", "Gurgaon", "Noida"});
+        CITIESBYSTATE.put("Uttar Pradesh", new String[]{"Agra", "Lucknow", "Merrut"});
+        CITIESBYSTATE.put("Haryana", new String[]{"Karnal", "Panipat"});
+        CITIESBYSTATE.put("Rajasthan", new String[]{"Jaipur", "Jaiselmer"});
     }
 
     private static String getRandomState() {
@@ -92,7 +91,7 @@ public class RandomUtils {
     }
 
     public static String getRandomCity() {
-        String[] cities = citiesByState.get(randomState);
+        String[] cities = CITIESBYSTATE.get(randomState);
         return new Faker().options().option(cities);
     }
 

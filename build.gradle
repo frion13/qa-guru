@@ -1,8 +1,10 @@
 plugins{
     id 'java'
 }
+
 group = 'guru.qa'
 version = '1.0'
+
 
 repositories {
     mavenCentral()
@@ -20,4 +22,6 @@ dependencies {
 
 test{
     useJUnitPlatform()
+
+
 }
