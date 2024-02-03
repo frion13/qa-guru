@@ -1,4 +1,4 @@
-package testGithubSelenide;
+package testgithubselenide;
 
 import org.junit.jupiter.api.Test;
 
