@@ -32,7 +32,7 @@ public class WebTest {
             "Selenide | https://ru.selenide.org/",
             "Junit 5 | https://junit.org/junit5/docs/current/user-guide/"
     }, delimiter = '|') //несколько параметров с разделителем | или просто запятая вместо символа
-    @CsvFileSource(resources = "/test_data/serchResultShouldContainExpectedUrl.csv") //подключить файл
+    @CsvFileSource(resources = "/testdata/serchResultShouldContainExpectedUrl.csv") //подключить файл
     @ParameterizedTest(name = "В первой карточке должна быть ссылка {1} для поискового запроса {0}") //параметризированный тест, передаются параметры
     @Tag("Пишется приоритет теста Blocker")
     void serchResultShouldContainExpectedUrl(String searchQuery, String expectedLink){

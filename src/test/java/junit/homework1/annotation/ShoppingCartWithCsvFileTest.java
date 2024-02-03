@@ -28,7 +28,7 @@ public class ShoppingCartWithCsvFileTest {
 
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/test_data/cartShouldHaveExpectedInfo.csv", delimiter = '|')
+    @CsvFileSource(resources = "/testdata/cartShouldHaveExpectedInfo.csv", delimiter = '|')
     void cartShouldHaveExpectedInfo(String title, String price, String description) {
         $(byText(title)).click();
         $(".btn_inventory").click();

@@ -47,7 +47,7 @@ public class FileParsingTest {
 
     @Test
     void csvParsingTest() throws Exception {
-        try (InputStream is = cl.getResourceAsStream("test_data/fileForCsvTest.csv");
+        try (InputStream is = cl.getResourceAsStream("testdata/fileForCsvTest.csv");
              CSVReader csvReader = new CSVReader(new InputStreamReader(is))) {
             List<String[]> content = csvReader.readAll();
             assertArrayEquals(
@@ -59,7 +59,7 @@ public class FileParsingTest {
 
     @Test
     void zipParsingTest() throws Exception {
-        try (InputStream is = cl.getResourceAsStream("test_data/sample.zip");
+        try (InputStream is = cl.getResourceAsStream("testdata/sample.zip");
              ZipInputStream zis = new ZipInputStream(is)) {
             ZipEntry entry;
             while ((entry = zis.getNextEntry()) != null) {
@@ -70,7 +70,7 @@ public class FileParsingTest {
 
     @Test
     void jsonParsingTest() throws Exception {
-        try (InputStream is = cl.getResourceAsStream("test_data/human.json");
+        try (InputStream is = cl.getResourceAsStream("testdata/human.json");
              Reader reader = new InputStreamReader(is)) {
             JsonObject object = gson.fromJson(reader, JsonObject.class);
 
@@ -90,7 +90,7 @@ public class FileParsingTest {
     @Test
     @DisplayName("создали класс Human и Passport")
     void jsonParsingTestNextLevel() throws Exception {
-        try (InputStream is = cl.getResourceAsStream("test_data/human.json");
+        try (InputStream is = cl.getResourceAsStream("testdata/human.json");
              Reader reader = new InputStreamReader(is)) {
             Human object = gson.fromJson(reader, Human.class);
 

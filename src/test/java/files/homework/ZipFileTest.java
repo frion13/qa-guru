@@ -13,23 +13,25 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ZipFileTest {
     private final ClassLoader cl = FileParsingTest.class.getClassLoader();
+    boolean xlsFound = false;
 
 
     @Test
     @DisplayName("Чтение PDF из zip архива")
     void zipParsingPdfTest() throws Exception {
-        try (InputStream is = cl.getResourceAsStream("test_data/ziptest.zip");
+        try (InputStream is = cl.getResourceAsStream("testdata/ziptest.zip");
              ZipInputStream zis = new ZipInputStream(is)) {
             ZipEntry entry;
             while ((entry = zis.getNextEntry()) != null) {
                 if (entry.getName().endsWith(".pdf")) {
                     PDF content = new PDF(zis);
-                    assertEquals("JUnit 5 User Guide", content.title);
+                    assertThat(content.title).isEqualTo("JUnit 5 User Guide");
                 }
             }
         }
@@ -38,32 +40,35 @@ public class ZipFileTest {
     @Test
     @DisplayName("Чтение XLS из zip архива")
     void zipParsingXlsxTest() throws Exception {
-        try (InputStream is = cl.getResourceAsStream("test_data/ziptest.zip");
+        try (InputStream is = cl.getResourceAsStream("testdata/ziptest.zip");
              ZipInputStream zis = new ZipInputStream(is)) {
             ZipEntry entry;
             while ((entry = zis.getNextEntry()) != null) {
-                if (entry.getName().endsWith(".xlsx")) {
+                if (entry.getName().endsWith(".xls") && !entry.getName().endsWith(".xlsx")) {
+                    xlsFound = true;
                     XLS xls = new XLS(zis);
-                    assertEquals("Белый Владимир Михайлович", xls.excel.getSheet("база данных").getRow(4).getCell(1).getStringCellValue());
+                    assertThat(xls.excel.getSheet("база данных").getRow(4).getCell(1).getStringCellValue())
+                            .isEqualTo("Белый Владимир Михайлович");
                 }
             }
-
         }
+        if (!xlsFound) {
+            fail("Файл .xls не найден в архиве");
+        }
+
     }
 
     @Test
     @DisplayName("Чтение CSV из zip архива")
     void zipParsingCsvTest() throws Exception {
-        try (InputStream is = cl.getResourceAsStream("test_data/ziptest.zip");
+        try (InputStream is = cl.getResourceAsStream("testdata/ziptest.zip");
              ZipInputStream zis = new ZipInputStream(is)) {
             ZipEntry entry;
             while ((entry = zis.getNextEntry()) != null) {
                 if (entry.getName().endsWith(".csv")) {
                     CSVReader csvReader = new CSVReader(new InputStreamReader(zis));
                     List<String[]> content = csvReader.readAll();
-                    assertArrayEquals(
-                            new String[]{"Ivanov", "Ivan"}, content.get(1)
-                    );
+                    assertThat(content.get(1)).isEqualTo(new String[]{"Ivanov", "Ivan"});
                 }
             }
         }

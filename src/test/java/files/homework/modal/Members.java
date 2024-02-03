@@ -3,11 +3,24 @@ package files.homework.modal;
 import java.util.List;
 
 public class Members {
-    public String name;
-    public int age;
-    public String secretIdentity;
-    public List<String> powers;
+    private String name;
+    private int age;
+    private String secretIdentity;
+    private List<String> powers;
 
+    public String getName() {
+        return name;
+    }
 
+    public int getAge() {
+        return age;
+    }
 
+    public String getSecretIdentity() {
+        return secretIdentity;
+    }
+
+    public List<String> getPowers() {
+        return powers;
+    }
 }
