@@ -21,14 +21,14 @@ public class WebSteps {
         open("https://github.com");
     }
 
-    @Step("Ищем репозиторий {repo}")
+    @Step("Ищем репозиторий {repos}")
     public void searchForRepository(String repo){
         $(".search-input-container").click();
         $("#query-builder-test").sendKeys(repo);
         $("#query-builder-test").submit();
     }
 
-    @Step("Кликаем по ссылке репозитория {repo}")
+    @Step("Кликаем по ссылке репозитория {repos}")
     public void clickOnRepositoryLink(String repo){
         $(linkText(repo)).click();
 
