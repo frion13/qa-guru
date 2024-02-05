@@ -40,7 +40,7 @@ compileTestJava{
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1',
-            'com.codeborne:selenide:7.0.4',
+            'com.codeborne:selenide:7.0.6',
             'com.github.javafaker:javafaker:1.0.2',
             'commons-io:commons-io:2.15.1',
             'com.codeborne:pdf-test:1.5.0',
