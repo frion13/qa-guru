@@ -16,7 +16,7 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
       - uses: Xotabu4/selenoid-github-action@v2
-      # запускаем тесты
+      # запускаем тест
       - run: ./gradlew clean test -Dselenide.remote=http://localhost:4444/wd/hub
       # скачиваем историю тестов
       - uses: actions/checkout@v2
