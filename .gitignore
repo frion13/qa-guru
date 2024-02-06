@@ -1,7 +1,10 @@
 # Idea
-.idea
+/.idea
 *.iml
 
 # Gradle
-.gradle
-build
+/.gradle
+/build
+
+
+*.DS_Store
