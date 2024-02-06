@@ -28,7 +28,7 @@ public class WebSteps {
         $("#query-builder-test").submit();
     }
 
-    @Step("Кликаем по ссылке репозитория {repos}")
+    @Step("Кликаем по ссылке репозитория {repo}")
     public void clickOnRepositoryLink(String repo){
         $(linkText(repo)).click();
 
