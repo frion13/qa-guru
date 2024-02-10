@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static io.qameta.allure.Allure.step;
 import static utils.RandomUtils.*;
 
-@Tag("registraion")
+@Tag("registration")
 public class PracticeFormPageObjectTest extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
