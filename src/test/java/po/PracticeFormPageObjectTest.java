@@ -1,4 +1,4 @@
-package hw;
+package po;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;

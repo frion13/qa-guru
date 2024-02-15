@@ -1,4 +1,4 @@
-package hw;
+package po;
 
 import org.junit.jupiter.api.Test;
 import pages.BoxPage;

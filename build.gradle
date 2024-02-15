@@ -23,11 +23,7 @@ allure{
 }
 
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17) // Укажите нужную версию Java
-    }
-}
+
 
 
 repositories {
@@ -56,6 +52,7 @@ dependencies {
 
 tasks.withType(Test){
     useJUnitPlatform()
+    systemProperties(System.getProperties())
 
     testLogging {
         lifecycle{
@@ -70,5 +67,11 @@ task simple_test(type: Test){
     useJUnitPlatform{
         includeTags("registration")
 
+    }
+}
+
+task property1_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("property1")
     }
 }
