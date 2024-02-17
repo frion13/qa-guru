@@ -23,11 +23,7 @@ allure{
 }
 
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17) // Укажите нужную версию Java
-    }
-}
+
 
 
 repositories {
@@ -40,6 +36,7 @@ compileTestJava{
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1',
+            'org.aeonbits.owner:owner:1.0.12',
             'com.codeborne:selenide:7.0.6',
             'com.github.javafaker:javafaker:1.0.2',
             'commons-io:commons-io:2.15.1',
@@ -50,12 +47,50 @@ dependencies {
             'com.fasterxml.jackson.core:jackson-core:2.13.1',
             'com.fasterxml.jackson.core:jackson-databind:2.16.1',
             'org.assertj:assertj-core:3.25.1',
-            'io.qameta.allure:allure-selenide:2.25.0'
+            'io.qameta.allure:allure-selenide:2.25.0',
+            'org.slf4j:slf4j-simple:2.0.7'
 }
 
-test{
+tasks.withType(Test){
     useJUnitPlatform()
     systemProperties(System.getProperties())
 
+    testLogging {
+        lifecycle{
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
 
+        }
+    }
+}
+
+task simple_test(type: Test){
+    useJUnitPlatform{
+        includeTags("registration")
+
+    }
+}
+
+task property1_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("property1")
+    }
+}
+
+task property3_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("property3")
+    }
+}
+
+task owner1_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("owner1")
+    }
+
+}
+task owner3_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("owner3")
+    }
 }
