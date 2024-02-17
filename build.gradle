@@ -36,6 +36,7 @@ compileTestJava{
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1',
+            'org.aeonbits.owner:owner:1.0.12',
             'com.codeborne:selenide:7.0.6',
             'com.github.javafaker:javafaker:1.0.2',
             'commons-io:commons-io:2.15.1',
@@ -73,5 +74,23 @@ task simple_test(type: Test){
 task property1_test(type: Test) {
     useJUnitPlatform {
         includeTags("property1")
+    }
+}
+
+task property3_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("property3")
+    }
+}
+
+task owner1_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("owner1")
+    }
+
+}
+task owner3_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("owner3")
     }
 }
