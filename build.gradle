@@ -64,12 +64,7 @@ tasks.withType(Test){
     }
 }
 
-task simple_test(type: Test){
-    useJUnitPlatform{
-        includeTags("registration")
 
-    }
-}
 
 task property1_test(type: Test) {
     useJUnitPlatform {
@@ -92,5 +87,13 @@ task owner1_test(type: Test) {
 task owner3_test(type: Test) {
     useJUnitPlatform {
         includeTags("owner3")
+    }
+
+
+}
+task registration_test(type: Test){
+    useJUnitPlatform{
+        includeTags("registration")
+
     }
 }
