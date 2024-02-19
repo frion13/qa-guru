@@ -2,9 +2,7 @@ package jenkins.properties;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import testgithubselenide.SelenideReposytorySearch;
 
-import java.lang.module.Configuration;
 
 import static java.lang.String.format;
 
