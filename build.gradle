@@ -37,7 +37,7 @@ compileTestJava{
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1',
             'org.aeonbits.owner:owner:1.0.12',
-            'com.codeborne:selenide:7.0.6',
+            'com.codeborne:selenide:6.19.1',
             'com.github.javafaker:javafaker:1.0.2',
             'commons-io:commons-io:2.15.1',
             'com.codeborne:pdf-test:1.5.0',
@@ -47,8 +47,7 @@ dependencies {
             'com.fasterxml.jackson.core:jackson-core:2.13.1',
             'com.fasterxml.jackson.core:jackson-databind:2.16.1',
             'org.assertj:assertj-core:3.25.1',
-            'io.qameta.allure:allure-selenide:2.25.0',
-            'org.slf4j:slf4j-simple:2.0.7'
+            'io.qameta.allure:allure-selenide:2.25.0'
 }
 
 tasks.withType(Test){

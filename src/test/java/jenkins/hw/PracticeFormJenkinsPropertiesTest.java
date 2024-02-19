@@ -8,7 +8,7 @@ import pages.RegistrationPage;
 
 import static io.qameta.allure.Allure.step;
 
-
+@Tag("registration")
 public class PracticeFormJenkinsPropertiesTest extends BaseTest {
 
     RegistrationPage registrationPage = new RegistrationPage();
@@ -27,7 +27,6 @@ public class PracticeFormJenkinsPropertiesTest extends BaseTest {
 
 
     @Test
-    @Tag("registration")
     void practiceFormTest() {
         step("Заполнить форму", () -> {
             registrationPage.setFirstName(registrationConfig.firstName())
