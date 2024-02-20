@@ -22,6 +22,7 @@ public class PracticeFormJenkinsPropertiesTest extends BaseTest {
         registrationConfig = ConfigFactory.create(RegistrationConfig.class);
         step("Открыть форму", () -> {
             registrationPage.openPage();
+            registrationPage.consentForm();
         });
     }
 

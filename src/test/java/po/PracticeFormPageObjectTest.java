@@ -73,6 +73,7 @@ public class PracticeFormPageObjectTest extends TestBase {
     void openPage() {
         step("Открыть форму", () -> {
             registrationPage.openPage();
+            registrationPage.consentForm();
         });
 
     }

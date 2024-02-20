@@ -37,6 +37,14 @@ public class RegistrationPage {
 
     }
 
+    public RegistrationPage consentForm() {
+        if ($(".fc-consent-root").isDisplayed()) {
+            $(".fc-consent-root").$(byText("Consent")).click();
+        };
+        return this;
+
+    }
+
     public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
 
