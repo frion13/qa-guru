@@ -5,7 +5,12 @@ import net.bytebuddy.implementation.bind.annotation.Default;
 import org.aeonbits.owner.Config;
 
 
-@Config.Sources("classpath:config/driver.properties")
+@Config.LoadPolicy(Config.LoadType.MERGE)
+@Config.Sources({
+        "system:environment",
+        "system:properties",
+        "classpath:config/driver.properties"
+})
 public interface DriverConfig extends Config {
     @Key("browser.name")
     @DefaultValue("chrome")
