@@ -41,6 +41,9 @@ public class RegistrationPage {
         if ($(".fc-consent-root").isDisplayed()) {
             $(".fc-consent-root").$(byText("Consent")).click();
         };
+        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+
+
         return this;
 
     }
