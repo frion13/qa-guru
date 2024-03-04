@@ -47,7 +47,8 @@ dependencies {
             'com.fasterxml.jackson.core:jackson-core:2.13.1',
             'com.fasterxml.jackson.core:jackson-databind:2.16.1',
             'org.assertj:assertj-core:3.25.1',
-            'io.qameta.allure:allure-selenide:2.25.0'
+            'io.qameta.allure:allure-selenide:2.25.0',
+            'io.github.bonigarcia:webdrivermanager:5.7.0'
 }
 
 tasks.withType(Test){

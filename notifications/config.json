@@ -1,0 +1,17 @@
+{
+  "base": {
+    "project": "some project",
+    "environment": "some env",
+    "comment": "some comment",
+    "reportLink": "https://jenkins.autotests.cloud/job/24-frio13-jenkins_02_properties_hw/",
+    "language": "en",
+    "messenger": "telegram",
+    "allureFolder": "build/allure-report/",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "7102527811:AAGCjLeYAPABIbHiNUsw4q_qBAQJTcXUquU",
+    "chat": "489113308",
+    "replyTo": ""
+  }
+}
