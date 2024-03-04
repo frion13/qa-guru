@@ -6,7 +6,7 @@ import org.aeonbits.owner.Config;
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
         "system:properties",
-        "classpath:config/driver.properties"
+        "classpath:config/${driver}.properties"
 })
 public interface DriverConfig extends Config {
     @Key("browser.name")
@@ -22,7 +22,6 @@ public interface DriverConfig extends Config {
     String browserSize();
 
     @Key("browser.remote.url")
-    @DefaultValue("https://user1:1234@selenoid.autotests.cloud/wd/hub")
     String browserRemoteUrl();
 
 

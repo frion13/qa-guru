@@ -18,7 +18,6 @@ public class PracticeFormJenkinsPropertiesTest extends BaseTest {
 
     @BeforeEach
     void setTestData() {
-        System.setProperty("environment", System.getProperty("environment", "stage"));
         registrationConfig = ConfigFactory.create(RegistrationConfig.class);
         step("Открыть форму", () -> {
             registrationPage.openPage();

@@ -16,7 +16,8 @@ public class BaseTest {
 
     @BeforeAll
     static void beforeAll() {
-        DriverConfig driverConfig = ConfigFactory.create(DriverConfig.class);
+        System.setProperty("driver", "local");
+        DriverConfig driverConfig = ConfigFactory.create(DriverConfig.class, System.getProperties());
         System.setProperty("environment", System.getProperty("environment", "stage"));
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
