@@ -23,6 +23,7 @@ public class RegistrationPage {
             currentAddress = $("#currentAddress");
 
 
+
     CalendarComponent calendarComponent = new CalendarComponent();
 
     public RegistrationPage openPage() {
@@ -37,7 +38,12 @@ public class RegistrationPage {
 
     public RegistrationPage consentForm() {
         if ($(".fc-consent-root").isDisplayed()) {
-            $(".fc-consent-root").$(byText("Consent")).click();
+            if ($(".fc-consent-root").$(byText("Consent")).isDisplayed()){
+                $(".fc-consent-root").$(byText("Consent")).click();
+            }else if ($(".fc-consent-root").$(byText("Соглашаюсь")).isDisplayed()){
+                $(".fc-consent-root").$(byText("Consent")).click();
+            }
+
         }
         ;
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
