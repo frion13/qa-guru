@@ -5,6 +5,10 @@
 # Gradle
 /.gradle
 /build
+allure-results
+last-history
+notifications
+
 
 
 *.DS_Store
