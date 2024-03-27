@@ -5,12 +5,18 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 import static io.restassured.http.ContentType.JSON;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.assertj.core.api.Assertions.*;
 
 public class CreateTest {
+
+    @BeforeEach
+    void setup(){
+        baseURI="https://reqres.in";
+        basePath="/api/users";
+    }
     @Test
     void successCreateUserTest() {
         String body = " { \"name\": \"morpheus\", \"job\": \"leader\" }";
@@ -20,7 +26,7 @@ public class CreateTest {
                 .body(body)
                 .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/users")
+                .post()
                 .then()
                 .log().body()
                 .statusCode(201)
@@ -44,7 +50,7 @@ public class CreateTest {
                 .body("")
                 .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/users")
+                .post()
                 .then()
                 .log().body()
                 .extract().response();

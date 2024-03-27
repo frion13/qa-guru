@@ -1,7 +1,6 @@
 package rest.api.specs;
 
 import io.restassured.builder.ResponseSpecBuilder;
-import io.restassured.filter.log.LogDetail;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
@@ -11,19 +10,17 @@ import static io.restassured.filter.log.LogDetail.STATUS;
 import static io.restassured.http.ContentType.JSON;
 import static rest.api.helpers.CustomAllureListener.withCustomTemplates;
 
-public class LoginSpec {
-    public static RequestSpecification loginRequestSpec = with()
+public class DemoqaSpec {
+    public static RequestSpecification requestSpec = with()
             .filter(withCustomTemplates())
             .log().uri()
             .log().method()
             .log().body()
             .log().headers()
-            .contentType(JSON)
-            .baseUri("https://reqres.in")
-            .basePath("/api/login");
+            .contentType(JSON);
 
 
-    public static ResponseSpecification loginResponseSpec = new ResponseSpecBuilder()
+    public static ResponseSpecification responseSpec = new ResponseSpecBuilder()
             .expectStatusCode(200)
             .log(STATUS)
             .log(BODY)

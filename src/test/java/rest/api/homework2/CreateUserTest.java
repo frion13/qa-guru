@@ -1,29 +1,37 @@
 package rest.api.homework2;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import rest.api.homework2.models.CreateUserModel;
 import rest.api.homework2.models.CreateUserRequestModel;
 import rest.api.homework2.models.CreateUserResponseModel;
 
 import static io.qameta.allure.Allure.step;
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static rest.api.specs.CreateUserSpec.createRequestSpec;
-import static rest.api.specs.CreateUserSpec.createResponseSpec;
+import static rest.api.specs.DemoqaSpec.*;
 
 public class CreateUserTest {
+
+    @BeforeEach
+    void setup(){
+        baseURI="https://reqres.in";
+        basePath="/api/users";
+    }
+
     @Test
     void successCreateUserTest() {
-        CreateUserRequestModel request = new CreateUserRequestModel();
+        CreateUserModel request = new CreateUserModel();
         request.setName("morpheus");
         request.setJob("leader");
-        CreateUserResponseModel response = step("Make request", () ->
-                given(createRequestSpec)
+        CreateUserModel response = step("Make request", () ->
+                given(requestSpec)
                         .body(request)
                         .when()
                         .post()
                         .then()
-                        .spec(createResponseSpec)
-                        .extract().as(CreateUserResponseModel.class));
+                        .spec(responseSpec)
+                        .extract().as(CreateUserModel.class));
         step("Check response user name", () ->
                 assertThat(response.getName()).isEqualTo("morpheus"));
         step("Check response user job", () ->
@@ -33,15 +41,15 @@ public class CreateUserTest {
 
     @Test
     void createUserWithEmptyParametersTest() {
-        CreateUserRequestModel request = new CreateUserRequestModel();
-        CreateUserResponseModel response = step("Make request", () ->
-                given(createRequestSpec)
+        CreateUserModel request = new CreateUserModel();
+        CreateUserModel response = step("Make request", () ->
+                given(requestSpec)
                         .body(request)
                         .when()
                         .post()
                         .then()
-                        .spec(createResponseSpec)
-                        .extract().as(CreateUserResponseModel.class));
+                        .spec(responseSpec)
+                        .extract().as(CreateUserModel.class));
         step("Check response user name is null", () ->
                 assertThat(response.getName()).isEqualTo(null));
         step("Check response user job is null", () ->

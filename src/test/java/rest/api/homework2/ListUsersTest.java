@@ -1,24 +1,32 @@
 package rest.api.homework2;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import rest.api.homework2.models.UserListResponseModel;
 
 import static io.qameta.allure.Allure.step;
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.*;
-        import static rest.api.specs.UserListSpec.userListRequestSpec;
-import static rest.api.specs.UserListSpec.userListResponseSpec;
+import static rest.api.specs.DemoqaSpec.requestSpec;
+import static rest.api.specs.DemoqaSpec.responseSpec;
+
 
 public class ListUsersTest {
+
+    @BeforeEach
+    void setup() {
+        baseURI = "https://reqres.in";
+        basePath = "/api/users?page=2";
+    }
 
     @Test
     void getUserLustTest() {
 
-        UserListResponseModel response = step("Make request", () -> given(userListRequestSpec)
+        UserListResponseModel response = step("Make request", () -> given(requestSpec)
                 .when()
                 .get()
                 .then()
-                .spec(userListResponseSpec)
+                .spec(responseSpec)
                 .extract().as(UserListResponseModel.class));
 
 

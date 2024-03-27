@@ -1,6 +1,7 @@
 package rest.api.lesson.tests;
 
 import io.qameta.allure.restassured.AllureRestAssured;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import rest.api.lesson.models.lombok.LoginBodyLombokModel;
 import rest.api.lesson.models.lombok.LoginResponseLombokModel;
@@ -9,15 +10,24 @@ import rest.api.lesson.models.pojo.LoginBodyModel;
 import rest.api.lesson.models.pojo.LoginResponseModel;
 
 import static io.qameta.allure.Allure.step;
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 import static io.restassured.http.ContentType.JSON;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static rest.api.helpers.CustomAllureListener.withCustomTemplates;
-import static rest.api.specs.LoginSpec.*;
+import static rest.api.specs.DemoqaSpec.*;
 
 public class LoginExtendedTests {
+
+    @BeforeEach
+    void setup() {
+        baseURI = "https://reqres.in";
+        basePath = "/api/login";
+    }
+
+
+
     /*
     1. Make request (POST) to https://reqres.in/api/login
         with body { "email": "eve.holt@reqres.in", "password": "cityslicka" }
@@ -36,7 +46,7 @@ public class LoginExtendedTests {
                 .body(body)
                 .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/login")
+                .post()
                 .then()
                 .log().status()
                 .log().body()
@@ -58,7 +68,7 @@ public class LoginExtendedTests {
                 .body(authData)
                 .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/login")
+                .post()
                 .then()
                 .log().status()
                 .log().body()
@@ -80,7 +90,7 @@ public class LoginExtendedTests {
                 .body(authData)
                 .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/login")
+                .post()
                 .then()
                 .log().status()
                 .log().body()
@@ -103,7 +113,7 @@ public class LoginExtendedTests {
                 .body(authData)
                 .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/login")
+                .post()
                 .then()
                 .log().status()
                 .log().body()
@@ -126,7 +136,7 @@ public class LoginExtendedTests {
                 .body(authData)
                 .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/login")
+                .post()
                 .then()
                 .log().status()
                 .log().body()
@@ -150,7 +160,7 @@ public class LoginExtendedTests {
                     .body(authData)
                     .contentType(JSON)
                     .when()
-                    .post("https://reqres.in/api/login")
+                    .post()
                     .then()
                     .log().status()
                     .log().body()
@@ -167,12 +177,12 @@ public class LoginExtendedTests {
         authData.setEmail("eve.holt@reqres.in");
         authData.setPassword("cityslicka");
         LoginResponseLombokModel response = step("Make request", () ->
-                given(loginRequestSpec)
+                given(requestSpec)
                         .body(authData)
                         .when()
                         .post()
                         .then()
-                        .spec(loginResponseSpec)
+                        .spec(responseSpec)
                         .extract().as(LoginResponseLombokModel.class));
         step(" Check response", () ->
                 assertEquals("QpwL5tke4Pnpja7X4", response.getToken()));
@@ -184,7 +194,7 @@ public class LoginExtendedTests {
         LoginBodyLombokModel authData = new LoginBodyLombokModel();
         authData.setEmail("eve.holt@reqres.in");
         MissingPasswordLombokModel response = step("Make request", () ->
-                given(loginRequestSpec)
+                given(requestSpec)
                         .body(authData)
                         .when()
                         .post()
