@@ -11,6 +11,7 @@ import rest.api.ui.homework3.models.LoginModel;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.*;
 import static rest.api.ui.homework3.spec.DemoqaSpec.requestSpec;
 import static rest.api.ui.homework3.spec.DemoqaSpec.responseSpec;
@@ -19,7 +20,9 @@ public class LoginExtention implements BeforeEachCallback {
     AuthConfig config = ConfigFactory.create(AuthConfig.class, System.getProperties());
 
     @Override
+
     public void beforeEach(ExtensionContext context) {
+        step("API Authorization", () ->{
         baseURI="https://demoqa.com";
         basePath="Account/v1/Login";
         //make request to get token, id..
@@ -27,6 +30,7 @@ public class LoginExtention implements BeforeEachCallback {
         LoginModel login = new LoginModel();
         login.setUserName(config.userName());
         login.setPassword(config.password());
+
         CookiesModel response = given(requestSpec)
                 .body(login)
                 .when()
@@ -48,6 +52,8 @@ public class LoginExtention implements BeforeEachCallback {
                 new Cookie("token", token));
         getWebDriver().manage().addCookie(
                 new Cookie("expires", expires));
+        });
 
     }
+
 }
