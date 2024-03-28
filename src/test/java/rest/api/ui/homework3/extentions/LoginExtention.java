@@ -4,7 +4,8 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.Cookie;
-import owner.config.AuthConfig;
+
+import rest.api.ui.homework3.config.AuthConfig;
 import rest.api.ui.homework3.models.CookiesModel;
 import rest.api.ui.homework3.models.LoginModel;
 
@@ -24,7 +25,7 @@ public class LoginExtention implements BeforeEachCallback {
         //make request to get token, id..
         //Put data to cookies
         LoginModel login = new LoginModel();
-        login.setUserName(config.username());
+        login.setUserName(config.userName());
         login.setPassword(config.password());
         CookiesModel response = given(requestSpec)
                 .body(login)

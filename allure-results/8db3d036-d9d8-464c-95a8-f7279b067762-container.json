@@ -1,1 +1,11 @@
-{"uuid":"8db3d036-d9d8-464c-95a8-f7279b067762","name":"testAnnotatedStep()","children":["7686b307-b2c7-4fb3-ac54-f53a01faba0b"],"befores":[],"afters":[],"start":1707226896858,"stop":1707226898389}
+{
+  "uuid": "8db3d036-d9d8-464c-95a8-f7279b067762",
+  "name": "testAnnotatedStep()",
+  "children": [
+    "7686b307-b2c7-4fb3-ac54-f53a01faba0b"
+  ],
+  "befores": [],
+  "afters": [],
+  "start": 1707226896858,
+  "stop": 1707226898389
+}

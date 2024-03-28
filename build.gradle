@@ -103,4 +103,11 @@ task registration_test(type: Test){
     useJUnitPlatform{
         includeTags("registration")
     }
+
+}
+
+task login_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("login")
+    }
 }
