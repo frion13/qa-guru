@@ -3,8 +3,6 @@ package rest.api.homework2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import rest.api.homework2.models.CreateUserModel;
-import rest.api.homework2.models.CreateUserRequestModel;
-import rest.api.homework2.models.CreateUserResponseModel;
 
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.*;
